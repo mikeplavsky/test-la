@@ -1,15 +1,17 @@
 type Config = {
     client_id: String,
     client_secret: String,
-    workspace_id: String};
+    workspace_id: String,
+    tenant: String};
 
 const config = require('./config.js') as Config;
 const query = require('./query.js');
 
 let call = require('node-fetch');
 
-let AuthenticationContext = require("adal-node").AuthenticationContext;
-let context = new AuthenticationContext("https://login.windows.net/quest.com");
+let auth_cxt = require("adal-node").AuthenticationContext;
+let context = new auth_cxt(
+    `https://login.windows.net/${config.tenant}`);
 
 let get_token = async () => {
 
