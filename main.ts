@@ -31,10 +31,7 @@ let get_token = async () => {
 
         })});
 
-    let token = await res; 
-    console.log(token);
-
-    return token;
+    return await res; 
 
 };
 
